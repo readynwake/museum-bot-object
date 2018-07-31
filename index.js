@@ -37,7 +37,7 @@ app.post('/', function (request, response) {
 
     const actionHandlers = {
         'object.how': () => {
-            let responseToUser = { fulfillmentText: obj[what][how]};
+            let responseToUser = { fulfillmentText: obj[object][how]};
             sendResponse(responseToUser);
         },
 
