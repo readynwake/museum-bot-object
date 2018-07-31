@@ -51,8 +51,8 @@ app.post('/', function (request, response) {
             sendResponse(responseToUser);
         },
        
-        'object.what.when.who': () => {
-            let responseToUser = { fulfillmentText: obj[object][what][when][who]};
+        'object.what.when': () => {
+            let responseToUser = { fulfillmentText: obj[object][what][when]};
             sendResponse(responseToUser);
         },
        
