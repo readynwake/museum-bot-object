@@ -23,6 +23,8 @@ console.log('Answer: ' + obj['석곽묘']['정의']); //// debugging
 app.post('/', function (request, response) {
     console.log('request: \n' + JSON.stringify(request.body));
 
+    var object = request.body.queryResult.parameters['object'];
+    var other = request.body.queryResult.parameters['other'];
     var what = request.body.queryResult.parameters['what'];
     var who = request.body.queryResult.parameters['who'];
     var when = request.body.queryResult.parameters['when'];
@@ -44,38 +46,51 @@ app.post('/', function (request, response) {
             sendResponse(responseToUser);
         },
 
-        'what.when.how': () => {
-            let responseToUser = { fulfillmentText: obj[what][when][how]};
+        'object.how.why': () => {
+            let responseToUser = { fulfillmentText: obj[object][how][why]};
             sendResponse(responseToUser);
         },
         
-                
-        'what.where.how': () => {
-            let responseToUser = { fulfillmentText: obj[what][where][how]};
-            sendResponse(responseToUser);
-        },
-        
-        
-        'what.who': () => {
-            let responseToUser = { fulfillmentText: obj[what][who]};
+        'object.what.how': () => {
+            let responseToUser = { fulfillmentText: obj[object][what][how]};
             sendResponse(responseToUser);
         },
        
-        'what.who.how': () => {
-            let responseToUser = { fulfillmentText: obj[what][who][how]};
+        'object.what.when.who': () => {
+            let responseToUser = { fulfillmentText: obj[object][what][when][who]};
+            sendResponse(responseToUser);
+        },
+       
+        'object.what.who': () => {
+            let responseToUser = { fulfillmentText: obj[object][what][who]};
             sendResponse(responseToUser);
         },
         
-        'what.why': () => {
-            let responseToUser = { fulfillmentText: obj[what][why]};
+        'object.when.how': () => {
+            let responseToUser = { fulfillmentText: obj[object][when][how]};
             sendResponse(responseToUser);
         },
         
-        'what.when.who': () => {
-            let responseToUser = { fulfillmentText: obj[what][when][who]};
+        'object.where.how': () => {
+            let responseToUser = { fulfillmentText: obj[object][where][how]};
+            sendResponse(responseToUser);
+        },
+       
+        'other.object.how': () => {
+            let responseToUser = { fulfillmentText: obj[other][object][how]};
+            sendResponse(responseToUser);
+        },
+
+        'what.how': () => {
+            let responseToUser = { fulfillmentText: obj[what][how]};
             sendResponse(responseToUser);
         },
         
+        'what.how.why': () => {
+            let responseToUser = { fulfillmentText: obj[what][how][why]};
+            sendResponse(responseToUser);
+        },
+     
         'default': () => {
             let responseToUser = { fulfillmentText: '죄송합니다. 정보가 없는 내용입니다. 다른 궁금한건 없으신가요?' };
             sendResponse(responseToUser);
